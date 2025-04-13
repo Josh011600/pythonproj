@@ -1,0 +1,26 @@
+<!-- templates/view.html -->
+<div class="task-container page" id="view">
+    <h1 class="task_list_title">All Scheduled Tasks</h1>
+    <table id="taskTable">
+        <thead>
+            <tr>
+                <th>Time and Date</th>
+                <th>ID</th>
+                <th>Task Name</th>
+                <th>Scheduled Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.created_at }}</td>
+                <td>{{ task.id }}</td>
+                <td>{{ task.task_name }}</td>
+                <td>{{ task.scheduled_date }}</td>
+                <td><button onclick="markAsComplete({{ task.id }})">Done</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
