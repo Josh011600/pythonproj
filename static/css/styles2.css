@@ -151,3 +151,22 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+/* View content start*/
+#view table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#view th, #view td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+#view th {
+  background-color: #333;
+  color: white;
+}
+
+/*View content end */
