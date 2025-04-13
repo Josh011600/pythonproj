@@ -54,27 +54,23 @@ let taskId = 1;
         }
 
 
-/* Toogle navs */
-function toggleContent(pageId) {
-    const pages = document.querySelectorAll('.page');
-    const taskContainer = document.querySelector('.task-container');
-
-    // Hide all content by default
-    pages.forEach(p => p.style.display = 'none');
-    taskContainer.style.display = 'none';
-
-    // Show the selected content
-    if (pageId === 'home') {
-        taskContainer.style.display = 'block';  // Show Task Scheduler
-    } else {
-        const selectedPage = document.getElementById(pageId);
-        if (selectedPage) {
-            selectedPage.style.display = 'block';
-        } else {
-            console.error(`Page with ID "${pageId}" not found.`);
+        function toggleContent(page) {
+            if (page === 'view') {
+                fetch('/view')
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById('content').innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Failed to load tasks:', error);
+                    });
+            } else {
+                document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+                const target = document.getElementById(page);
+                if (target) target.style.display = 'block';
+            }
         }
-    }
-}
+        
 
 // Default page to show on load
 document.addEventListener('DOMContentLoaded', () => {
